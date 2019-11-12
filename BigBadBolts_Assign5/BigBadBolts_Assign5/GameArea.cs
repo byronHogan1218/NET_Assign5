@@ -36,6 +36,9 @@ namespace BigBadBolts_Assign5
  
         //Check to see when a line is eliminated
         public event EventHandler StartNewEvent;
+
+        //End the game
+        public event EventHandler EndGame;
         
         //Handles the score, including adding the score
         public delegate void AddScoreEventHandler(object sender, AddScoreEventArgs e);
@@ -129,6 +132,10 @@ namespace BigBadBolts_Assign5
                 {
                     StartNewEvent(this, null);
                 }
+                if(CurrentBlock.CanMoveDown() == false)//This fires if the game is over
+                {
+                    EndGame(this,null);
+                }
             }
 
         }
@@ -142,10 +149,11 @@ namespace BigBadBolts_Assign5
                 CurrentBlock.Rotate();
         }
 
-        /// <summary>
-        /// Eliminate full lines from the specific row.
-        /// </summary>
-        /// <param name="row">the row to start checking</param>
+      
+        /**
+         * This is where the lines are eliminated form the game area
+         * Parameters: row - where to start checking to delete a row
+         */
         public void EliminateLines(int row)
         {
             int upper = Math.Max(row - 3, 0);

@@ -1,24 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BigBadBolts_Assign5
 {
+
     public partial class Form1 : Form
     {
-        /// <summary>
-        /// Windows message number for key down event.
-        /// </summary>
+        public  Label label1;
+        public Label lbScore;
+        private GameArea gameArea;
+        public Button btnStart;
+        public Panel panel1;
+        public Timer timer;
+        public Label lbElimRows;
+
         const int WM_KEYDOWN = 0x100;
-        /// <summary>
-        /// Creates the main window instants.
-        /// </summary>
+
+        //public static Label nextLabel = label1;
+        private int score = 0;
+        private int elimRows = 0;
+        private Block nextBlock = null;
+        private BlockArea pnlNext;
+
         public Form1()
         {
             InitializeComponent();
@@ -32,15 +36,18 @@ namespace BigBadBolts_Assign5
             pnlNext.Size = new System.Drawing.Size(80, 80);
             //pnlNext.TabIndex = 1;
         }
-        /// <summary>
-        /// Handles the start button click event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+ 
+        /**
+         * This handles the function to start the game or pause it.
+         */
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (btnStart.Text == "Start")
+            if (btnStart.Text == "Start")//Handles the case of starting the game
             {
+                label1.Visible = true;
+                lbElimRows.Visible = true;
+                lbScore.Visible = true;
                 gameArea.Clear();
                 pnlNext.Clear();
                 score = 0;
@@ -68,15 +75,13 @@ namespace BigBadBolts_Assign5
             }
 
         }
-        /// <summary>
-        /// Handles the up/down/left/right key down event.
-        /// </summary>
-        /// <param name="msg">windows message</param>
-        /// <param name="keyData">windows message data</param>
-        /// <returns>true if the message is handled</returns>
+     
+        /**
+         * This function handles the pressing of keys and what to do for each
+         */
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (btnStart.Text == "Paused" || btnStart.Text == "Start")
+            if (btnStart.Text == "Paused" || btnStart.Text == "Start")//Dont do anything if the game isn't running
             {
                 return false;
             }
@@ -104,36 +109,38 @@ namespace BigBadBolts_Assign5
             return false;
         }
 
-        /// <summary>
-        /// Handles the exit menu click event.
-        /// </summary>
-        /// <param name="sender">this form</param>
-        /// <param name="e">empty event arg</param>
-        private void miExit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
 
-        /// <summary>
-        /// Forces the block move down at the timer tick.
-        /// </summary>
-        /// <param name="sender">this form</param>
-        /// <param name="e">empty event arg</param>
+ 
+        /**
+         * This advances the game by one frame aka one tick
+         */
         private void timer_Tick(object sender, EventArgs e)
         {
             gameArea.MoveDown();
         }
 
+        /**
+         * This stops the game, like a pause
+         */
         private void gameArea_StopMoveEvent(object sender, EventArgs e)
         {
             timer.Stop();
         }
 
-        /// <summary>
-        /// Creates a new block when the current block is stoped.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /**
+         * This is what happens when the game ends
+         */
+        private void gameArea_EndGame(object sender, EventArgs e)
+        {
+            timer.Stop();
+            label1.Visible = false;
+            btnStart.Text = "Start";
+        }
+
+        /// 
+        /**
+         * This function creates a new block when the current block cannot do any more legal moves
+         */
         private void gameArea_StartNewEvent(object sender, EventArgs e)
         {
 
@@ -141,8 +148,7 @@ namespace BigBadBolts_Assign5
             gameArea.CurrentBlock = nextBlock;
             gameArea.CurrentBlock.BlockArea = gameArea;
             gameArea.CurrentBlock.Location = new Point(3, 0);
-            // cannot move anymore
-            if (!gameArea.CurrentBlock.CanShow())
+            if (!gameArea.CurrentBlock.CanShow())//We cannot move the block anymore
             {
                 timer.Stop();
                 btnStart.Text = "Start";
@@ -154,11 +160,11 @@ namespace BigBadBolts_Assign5
             nextBlock.Show();
             timer.Start();
         }
-        /// <summary>
-        /// Happens when there are rows eliminated.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+
+        /**
+         * This funciton handles when a row is eleiminated
+         */
         private void gameArea_AddScoreEvent(object sender, AddScoreEventArgs e)
         {
             score += 5 * e.Count * e.Count + 5;
@@ -167,28 +173,9 @@ namespace BigBadBolts_Assign5
             lbScore.Text = "Score: " + score.ToString();
         }
 
-        /// <summary>
-        /// The game score
-        /// </summary>
-        private int score = 0;
-
-        /// <summary>
-        /// Eliminated rows count
-        /// </summary>
-        private int elimRows = 0;
-
-        /// <summary>
-        /// The next block to be dropped.
-        /// </summary>
-        private Block nextBlock = null;
-
-        /// <summary>
-        /// The display panel for the next block.
-        /// </summary>
-        private BlockArea pnlNext;
-        private void Form1_Load(object sender, EventArgs e)
+        public void updateLabel(bool x)
         {
-
+            label1.Visible = x;
         }
     }
 }
