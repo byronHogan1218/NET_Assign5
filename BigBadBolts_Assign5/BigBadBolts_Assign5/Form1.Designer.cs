@@ -36,12 +36,12 @@
             this.lbScore = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.lbTimer = new System.Windows.Forms.Label();
             this.lbElimRows = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.gameArea = new BigBadBolts_Assign5.GameArea();
             this.lbGameOver = new System.Windows.Forms.Label();
-            this.lbTimer = new System.Windows.Forms.Label();
-            this.lbTime = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.gameArea.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +94,28 @@
             this.panel1.Size = new System.Drawing.Size(123, 410);
             this.panel1.TabIndex = 11;
             // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTime.Location = new System.Drawing.Point(44, 215);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(36, 18);
+            this.lbTime.TabIndex = 13;
+            this.lbTime.Text = "0:00";
+            this.lbTime.Visible = false;
+            // 
+            // lbTimer
+            // 
+            this.lbTimer.AutoSize = true;
+            this.lbTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTimer.Location = new System.Drawing.Point(3, 193);
+            this.lbTimer.Name = "lbTimer";
+            this.lbTimer.Size = new System.Drawing.Size(49, 18);
+            this.lbTimer.TabIndex = 12;
+            this.lbTimer.Text = "Time: ";
+            this.lbTimer.Visible = false;
+            // 
             // lbElimRows
             // 
             this.lbElimRows.AutoSize = true;
@@ -135,28 +157,6 @@
             this.lbGameOver.TabIndex = 0;
             this.lbGameOver.Text = "Game Over";
             this.lbGameOver.Visible = false;
-            // 
-            // lbTimer
-            // 
-            this.lbTimer.AutoSize = true;
-            this.lbTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTimer.Location = new System.Drawing.Point(3, 193);
-            this.lbTimer.Name = "lbTimer";
-            this.lbTimer.Size = new System.Drawing.Size(49, 18);
-            this.lbTimer.TabIndex = 12;
-            this.lbTimer.Text = "Time: ";
-            this.lbTimer.Visible = false;
-            // 
-            // lbTime
-            // 
-            this.lbTime.AutoSize = true;
-            this.lbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTime.Location = new System.Drawing.Point(44, 215);
-            this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(36, 18);
-            this.lbTime.TabIndex = 13;
-            this.lbTime.Text = "time";
-            this.lbTime.Visible = false;
             // 
             // Form1
             // 

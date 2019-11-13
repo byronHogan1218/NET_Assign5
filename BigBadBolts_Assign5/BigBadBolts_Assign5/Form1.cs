@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Timers;
+using System.Diagnostics;
+using System.IO;
 
 namespace BigBadBolts_Assign5
 {
@@ -12,12 +15,13 @@ namespace BigBadBolts_Assign5
         private GameArea gameArea;
         public Button btnStart;
         public Panel panel1;
-        public Timer timer;
+        public System.Windows.Forms.Timer timer;
+        public System.Diagnostics.Stopwatch gameTimer;
+        public static System.Timers.Timer everySecond;
         public Label lbElimRows;
 
         const int WM_KEYDOWN = 0x100;
 
-        //public static Label nextLabel = label1;
         private int score = 0;
         private int elimRows = 0;
         private Block nextBlock = null;
@@ -26,15 +30,22 @@ namespace BigBadBolts_Assign5
         public Form1()
         {
             InitializeComponent();
-            // pnlNext
+            Label.CheckForIllegalCrossThreadCalls = false;
+
+            //It wont work!!!
+            System.Media.SoundPlayer sp = new System.Media.SoundPlayer("..\\..\\Tetris.wav");
+            sp.Play();
+
+            gameTimer = new Stopwatch();
+            everySecond = new System.Timers.Timer(1000);
+            everySecond.Elapsed += IncrementTime;
+            everySecond.AutoReset = true;
             pnlNext = new BlockArea(4, 4);
             panel1.Controls.Add(this.pnlNext);
-            //pnlNext.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             pnlNext.CurrentBlock = null;
             pnlNext.Location = new System.Drawing.Point(5, 21);
             pnlNext.Name = "pnlNext";
             pnlNext.Size = new System.Drawing.Size(80, 80);
-            //pnlNext.TabIndex = 1;
         }
 
  
@@ -45,6 +56,12 @@ namespace BigBadBolts_Assign5
         {
             if (btnStart.Text == "Start")//Handles the case of starting the game
             {
+                lbTime.Text = "0:00";
+                gameTimer.Reset();
+                gameTimer.Start();
+                everySecond.Enabled = true;
+                lbTime.Visible = true;
+                lbTimer.Visible = true;
                 lbGameOver.Visible = false;
                 label1.Visible = true;
                 lbElimRows.Visible = true;
@@ -62,16 +79,17 @@ namespace BigBadBolts_Assign5
                 nextBlock.Show();
                 timer.Start();
                 btnStart.Text = "Pause";
-                //this.Focus(); 
             }
             else if (btnStart.Text == "Pause")
             {
                 timer.Stop();
+                gameTimer.Stop();
                 btnStart.Text = "Paused";
             }
             else if (btnStart.Text == "Paused")
             {
                 timer.Start();
+                gameTimer.Start();
                 btnStart.Text = "Pause";
             }
 
@@ -90,21 +108,21 @@ namespace BigBadBolts_Assign5
             {
                 switch (keyData)
                 {
-                    case Keys.A:
+                    case Keys.Left:
                         gameArea.MoveLeft();
                         return true;
 
-                    case Keys.D:
+                    case Keys.Right:
                         gameArea.MoveRight();
                         return true;
 
                     case Keys.Down:
                         gameArea.MoveDown();
                         return true;
-                    case Keys.J:
+                    case Keys.A:
                         gameArea.RotateBlockLeft();
                         return true;
-                    case Keys.L:
+                    case Keys.D:
                         gameArea.RotateBlockRight();
                         return true;
                 }
@@ -113,8 +131,13 @@ namespace BigBadBolts_Assign5
             return false;
         }
 
-
- 
+        /**
+         * This updates the time label every second
+         */
+        public void IncrementTime(object sender, ElapsedEventArgs e)
+        {
+            lbTime.Text = String.Format("{0:#0}:{1:00}", gameTimer.Elapsed.Minutes, gameTimer.Elapsed.Seconds);
+        }
         /**
          * This advances the game by one frame aka one tick
          */
@@ -137,6 +160,7 @@ namespace BigBadBolts_Assign5
         private void gameArea_EndGame(object sender, EventArgs e)
         {
             timer.Stop();
+            gameTimer.Stop();
             lbGameOver.Visible = true;
             label1.Visible = false;
             btnStart.Text = "Start";
@@ -182,5 +206,7 @@ namespace BigBadBolts_Assign5
         {
             label1.Visible = x;
         }
+
+    
     }
 }

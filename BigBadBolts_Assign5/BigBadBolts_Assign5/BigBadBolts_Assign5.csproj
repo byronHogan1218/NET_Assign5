@@ -102,6 +102,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Original Tetris theme %28Tetris Soundtrack%29.mp3" />
     <Content Include="ref\peatetris.csproj" />
     <Content Include="ref\peatetris.sln" />
   </ItemGroup>

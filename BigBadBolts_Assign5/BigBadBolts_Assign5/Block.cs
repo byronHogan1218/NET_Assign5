@@ -184,7 +184,7 @@ namespace BigBadBolts_Assign5
             if (patterns.Count == 0)
                 return;
             int pid = 0;
-            if (patternId - 1 < 1 )
+            if (patternId - 1 < 0 )
             {
                 pid = patterns.Count-1;
             }
@@ -319,8 +319,8 @@ namespace BigBadBolts_Assign5
         public IBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Red;
-            CenterColor = Color.Red;
+            ForeColor = Color.Cyan;
+            CenterColor = Color.Cyan;
         }
         protected override void InitPatterns()
         {
@@ -336,8 +336,8 @@ namespace BigBadBolts_Assign5
         public JBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Black;
-            CenterColor = Color.Black;
+            ForeColor = Color.Blue;
+            CenterColor = Color.Blue;
         }
 
         protected override void InitPatterns()
@@ -357,8 +357,8 @@ namespace BigBadBolts_Assign5
         public LBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Magenta;
-            CenterColor = Color.Magenta;
+            ForeColor = Color.DarkOrange;
+            CenterColor = Color.DarkOrange;
         }
         protected override void InitPatterns()
         {
@@ -393,8 +393,8 @@ namespace BigBadBolts_Assign5
         public ZBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Orange;
-            CenterColor = Color.Orange;
+            ForeColor = Color.Crimson;
+            CenterColor = Color.Crimson;
         }
         protected override void InitPatterns()
         {
@@ -410,8 +410,8 @@ namespace BigBadBolts_Assign5
         public OBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Blue;
-            CenterColor = Color.Blue;
+            ForeColor = Color.Yellow;
+            CenterColor = Color.Yellow;
         }
         protected override void InitPatterns()
         {
