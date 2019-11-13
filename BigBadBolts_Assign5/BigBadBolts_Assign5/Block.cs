@@ -177,9 +177,35 @@ namespace BigBadBolts_Assign5
      
 
         /**
-         * This is usd to rotate the block
+         * This is usd to rotate the block Left
          */
-        public void Rotate()
+        public void RotateLeft()
+        {
+            if (patterns.Count == 0)
+                return;
+            int pid = 0;
+            if (patternId - 1 < 0 )
+            {
+                pid = patterns.Count-1;
+            }
+            else
+            {
+                pid = (patternId - 1);
+            }
+            Hide();
+            Square[] dest = GetSquares(location.X, location.Y, pid);
+            if (CanMove(dest))
+            {
+                patternId = pid;
+                squares = dest;
+            }
+            Show();
+        }
+
+         /**
+         * This is used to rotate the block right
+         */
+        public void RotateRight()
         {
             if (patterns.Count == 0)
                 return;
@@ -293,8 +319,8 @@ namespace BigBadBolts_Assign5
         public IBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Red;
-            CenterColor = Color.Red;
+            ForeColor = Color.Cyan;
+            CenterColor = Color.Cyan;
         }
         protected override void InitPatterns()
         {
@@ -310,8 +336,8 @@ namespace BigBadBolts_Assign5
         public JBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Black;
-            CenterColor = Color.Black;
+            ForeColor = Color.Blue;
+            CenterColor = Color.Blue;
         }
 
         protected override void InitPatterns()
@@ -331,8 +357,8 @@ namespace BigBadBolts_Assign5
         public LBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Magenta;
-            CenterColor = Color.Magenta;
+            ForeColor = Color.DarkOrange;
+            CenterColor = Color.DarkOrange;
         }
         protected override void InitPatterns()
         {
@@ -367,8 +393,8 @@ namespace BigBadBolts_Assign5
         public ZBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Orange;
-            CenterColor = Color.Orange;
+            ForeColor = Color.Crimson;
+            CenterColor = Color.Crimson;
         }
         protected override void InitPatterns()
         {
@@ -384,8 +410,8 @@ namespace BigBadBolts_Assign5
         public OBlock(BlockArea blockArea, int x, int y)
             : base(blockArea, x, y)
         {
-            ForeColor = Color.Blue;
-            CenterColor = Color.Blue;
+            ForeColor = Color.Yellow;
+            CenterColor = Color.Yellow;
         }
         protected override void InitPatterns()
         {

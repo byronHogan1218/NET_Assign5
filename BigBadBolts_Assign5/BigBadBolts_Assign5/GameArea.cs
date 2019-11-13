@@ -141,12 +141,20 @@ namespace BigBadBolts_Assign5
         }
 
         /**
-         * This function is used to rotate the block
+         * This function is used to rotate the block Left
          */
-        public void RotateBlock()
+        public void RotateBlockLeft()
         {
             if (CurrentBlock != null)
-                CurrentBlock.Rotate();
+                CurrentBlock.RotateLeft();
+        }
+        /**
+         * This function is used to rotate the block Right
+         */
+        public void RotateBlockRight()
+        {
+            if (CurrentBlock != null)
+                CurrentBlock.RotateRight();
         }
 
       
@@ -174,15 +182,22 @@ namespace BigBadBolts_Assign5
                     continue;
                 }
                 elimCount++;
-                for (int j = 0; j < Cols; j++)
+                for (int j = 0; j < Cols; j++) {
+                    GameArray[i, j].BackColor = Color.White;
+                    GameArray[i, j].ForeColor = Color.White;
+                    GameArray[i, j].Hide();
+                    GameArray[i, j].Show(Color.White,Color.White);
                     GameArray[i, j].ClearEvents(); // unregister events, prevent memory leak.
-                for (int k = i; k > 0; k--)
+                }
+                System.Threading.Thread.Sleep(500);//so the user can see the row being highlighted for deleting
+
+                for (int k = i; k > 0; k--)//get ready to move down a row
                     for (int j = 0; j < Cols; j++)
                     {
                         GameArray[k, j] = GameArray[k - 1, j];
                         GameArray[k, j].Location = new Point(j, k);
                     }
-                for (int j = 0; j < Cols; j++)
+                for (int j = 0; j < Cols; j++)//move down a row
                 {
                     GameArray[0, j] = new Square(j, 0);
                     GameArray[0, j].ShowEvent += new EventHandler(ShowSquare);

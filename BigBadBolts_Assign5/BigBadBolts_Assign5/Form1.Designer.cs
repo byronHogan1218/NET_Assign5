@@ -36,10 +36,15 @@
             this.lbScore = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.lbTimer = new System.Windows.Forms.Label();
             this.lbElimRows = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.gameArea = new BigBadBolts_Assign5.GameArea();
+            this.lbGameOver = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.gameArea.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -56,9 +61,10 @@
             // lbScore
             // 
             this.lbScore.AutoSize = true;
+            this.lbScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbScore.Location = new System.Drawing.Point(12, 159);
             this.lbScore.Name = "lbScore";
-            this.lbScore.Size = new System.Drawing.Size(47, 13);
+            this.lbScore.Size = new System.Drawing.Size(64, 18);
             this.lbScore.TabIndex = 4;
             this.lbScore.Text = "Score: 0";
             this.lbScore.Visible = false;
@@ -77,6 +83,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.lbTime);
+            this.panel1.Controls.Add(this.lbTimer);
             this.panel1.Controls.Add(this.lbElimRows);
             this.panel1.Controls.Add(this.btnStart);
             this.panel1.Controls.Add(this.lbScore);
@@ -87,12 +96,35 @@
             this.panel1.Size = new System.Drawing.Size(123, 410);
             this.panel1.TabIndex = 11;
             // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTime.Location = new System.Drawing.Point(44, 215);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(36, 18);
+            this.lbTime.TabIndex = 13;
+            this.lbTime.Text = "0:00";
+            this.lbTime.Visible = false;
+            // 
+            // lbTimer
+            // 
+            this.lbTimer.AutoSize = true;
+            this.lbTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTimer.Location = new System.Drawing.Point(3, 193);
+            this.lbTimer.Name = "lbTimer";
+            this.lbTimer.Size = new System.Drawing.Size(49, 18);
+            this.lbTimer.TabIndex = 12;
+            this.lbTimer.Text = "Time: ";
+            this.lbTimer.Visible = false;
+            // 
             // lbElimRows
             // 
             this.lbElimRows.AutoSize = true;
-            this.lbElimRows.Location = new System.Drawing.Point(14, 136);
+            this.lbElimRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbElimRows.Location = new System.Drawing.Point(13, 141);
             this.lbElimRows.Name = "lbElimRows";
-            this.lbElimRows.Size = new System.Drawing.Size(46, 13);
+            this.lbElimRows.Size = new System.Drawing.Size(63, 18);
             this.lbElimRows.TabIndex = 11;
             this.lbElimRows.Text = "Rows: 0";
             this.lbElimRows.Visible = false;
@@ -105,6 +137,7 @@
             // gameArea
             // 
             this.gameArea.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gameArea.Controls.Add(this.lbGameOver);
             this.gameArea.CurrentBlock = null;
             this.gameArea.Location = new System.Drawing.Point(0, 0);
             this.gameArea.Name = "gameArea";
@@ -114,6 +147,29 @@
             this.gameArea.StartNewEvent += new System.EventHandler(this.gameArea_StartNewEvent);
             this.gameArea.EndGame += new System.EventHandler(this.gameArea_EndGame);
             this.gameArea.AddScoreEvent += new BigBadBolts_Assign5.GameArea.AddScoreEventHandler(this.gameArea_AddScoreEvent);
+            // 
+            // lbGameOver
+            // 
+            this.lbGameOver.AutoSize = true;
+            this.lbGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGameOver.ForeColor = System.Drawing.Color.Red;
+            this.lbGameOver.Location = new System.Drawing.Point(7, 193);
+            this.lbGameOver.Name = "lbGameOver";
+            this.lbGameOver.Size = new System.Drawing.Size(190, 37);
+            this.lbGameOver.TabIndex = 0;
+            this.lbGameOver.Text = "Game Over";
+            this.lbGameOver.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(16, 338);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "How to Play";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Form1
             // 
@@ -132,12 +188,19 @@
             this.Text = "Tetris";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.gameArea.ResumeLayout(false);
+            this.gameArea.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
-        
-       
+        private System.Windows.Forms.Label lbGameOver;
+        private System.Windows.Forms.Label lbTime;
+        private System.Windows.Forms.Label lbTimer;
+        private System.Windows.Forms.Button button1;
+
+
+
         //public System.Windows.Forms.Label label1;
         //public System.Windows.Forms.Label lbScore;
         //private GameArea gameArea;
