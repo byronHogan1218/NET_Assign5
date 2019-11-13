@@ -10,6 +10,7 @@ namespace BigBadBolts_Assign5
 
     public partial class Form1 : Form
     {
+        public int level=1;
         public  Label label1;
         public Label lbScore;
         private GameArea gameArea;
@@ -196,7 +197,7 @@ namespace BigBadBolts_Assign5
          */
         private void gameArea_AddScoreEvent(object sender, AddScoreEventArgs e)
         {
-            score += 5 * e.Count * e.Count + 5;
+            score += 1000* e.Count;//5 * e.Count * e.Count + 5;
             elimRows += e.Count;
             lbElimRows.Text = "Rows: " + elimRows.ToString();
             lbScore.Text = "Score: " + score.ToString();
@@ -207,6 +208,11 @@ namespace BigBadBolts_Assign5
             label1.Visible = x;
         }
 
-    
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Use 'A' and 'D' to rotate your piece.\n" +
+                "Use the left and right arrow keys to move the block.\n" +
+                "Hold down to speed up the drop.");
+        }
     }
 }

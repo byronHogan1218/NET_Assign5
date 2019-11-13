@@ -42,6 +42,7 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.gameArea = new BigBadBolts_Assign5.GameArea();
             this.lbGameOver = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.gameArea.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +83,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.lbTime);
             this.panel1.Controls.Add(this.lbTimer);
             this.panel1.Controls.Add(this.lbElimRows);
@@ -158,6 +160,17 @@
             this.lbGameOver.Text = "Game Over";
             this.lbGameOver.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(16, 338);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "How to Play";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,6 +197,7 @@
         private System.Windows.Forms.Label lbGameOver;
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbTimer;
+        private System.Windows.Forms.Button button1;
 
 
 
