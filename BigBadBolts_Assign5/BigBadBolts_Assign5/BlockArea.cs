@@ -39,12 +39,12 @@ namespace BigBadBolts_Assign5
             set { currentBlock = value; }
         }
 
-
-        /// <summary>
-        /// Creates a BlockArea.
-        /// </summary>
-        /// <param name="rows">number of rows</param>
-        /// <param name="cols">number of columns</param>
+ 
+        /**
+         * This creates a block in a certain area
+         * parameters: rows - Number of rows
+         *             cols - Number of columns
+         */
         public BlockArea(int rows, int cols) : base()
         {
             gameArray = new Square[rows, cols];
@@ -59,11 +59,9 @@ namespace BigBadBolts_Assign5
                 }
         }
 
-        /// <summary>
-        /// Get the square from the sender object,
-        /// define the size of a square, and create a gradient
-        /// brush to fill the square with.
-        /// </summary>
+        /**
+         * This function is what draws the square on the screen
+         */
         public void ShowSquare(object sender, EventArgs e)
         {
             Square sq = sender as Square;
@@ -71,9 +69,11 @@ namespace BigBadBolts_Assign5
             DrawSquare(g, sq);
             g.Dispose();
         }
-        /// <summary>
-        /// Draw over the square with the background colour.
-        /// </summary>
+    
+        
+        /**
+         * This fills the square with a color
+         */
         public void HideSquare(object sender, EventArgs e)
         {
             Square sq = sender as Square;
@@ -82,21 +82,22 @@ namespace BigBadBolts_Assign5
             g.Dispose();
         }
 
-        /// <summary>
-        /// Return the square at the specified location. Otherwise,
-        /// throw an exception.
-        /// </summary>
+   
+        /**
+         * This will get a square at a location
+         * Returns null if nothing is found
+         * Returns the square if it found one
+         */
         public Square GetSquare(int x, int y)
         {
             if (x < 0 || x >= cols || y < 0 || y >= rows)
                 return null;
-            //throw new ArgumentOutOfRangeException();
             return GameArray[y, x];
         }
 
-        /// <summary>
-        /// Clean up the area, hide all squares.
-        /// </summary>
+        /**
+         * Gets rid of all the squares drawn on screen
+         */
         public void Clear()
         {
             for (int i = 0; i < rows; i++)
@@ -110,10 +111,10 @@ namespace BigBadBolts_Assign5
         
 
 
-        /// <summary>
-        /// Repaint the visible squares when the game area needs to be repainted.
-        /// </summary>
-        /// <param name="e"></param>
+     
+        /**
+         * This funciton redraws the squares on the screen if neccesary
+         */
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -126,9 +127,10 @@ namespace BigBadBolts_Assign5
                 }
         }
 
-        /// <summary>
-        /// draw a square on a Graphics surface.
-        /// </summary>
+   
+        /**
+         * This function draws a square
+         */
         private void DrawSquare(Graphics g, Square sq)
         {
             GraphicsPath path = new GraphicsPath();

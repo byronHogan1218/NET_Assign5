@@ -45,6 +45,7 @@ namespace BigBadBolts_Assign5
         {
             if (btnStart.Text == "Start")//Handles the case of starting the game
             {
+                lbGameOver.Visible = false;
                 label1.Visible = true;
                 lbElimRows.Visible = true;
                 lbScore.Visible = true;
@@ -89,19 +90,22 @@ namespace BigBadBolts_Assign5
             {
                 switch (keyData)
                 {
-                    case Keys.Left:
+                    case Keys.A:
                         gameArea.MoveLeft();
                         return true;
 
-                    case Keys.Right:
+                    case Keys.D:
                         gameArea.MoveRight();
                         return true;
 
                     case Keys.Down:
                         gameArea.MoveDown();
                         return true;
-                    case Keys.Up:
-                        gameArea.RotateBlock();
+                    case Keys.J:
+                        gameArea.RotateBlockLeft();
+                        return true;
+                    case Keys.L:
+                        gameArea.RotateBlockRight();
                         return true;
                 }
 
@@ -133,6 +137,7 @@ namespace BigBadBolts_Assign5
         private void gameArea_EndGame(object sender, EventArgs e)
         {
             timer.Stop();
+            lbGameOver.Visible = true;
             label1.Visible = false;
             btnStart.Text = "Start";
         }

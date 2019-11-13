@@ -177,9 +177,35 @@ namespace BigBadBolts_Assign5
      
 
         /**
-         * This is usd to rotate the block
+         * This is usd to rotate the block Left
          */
-        public void Rotate()
+        public void RotateLeft()
+        {
+            if (patterns.Count == 0)
+                return;
+            int pid = 0;
+            if (patternId - 1 < 1 )
+            {
+                pid = patterns.Count-1;
+            }
+            else
+            {
+                pid = (patternId - 1);
+            }
+            Hide();
+            Square[] dest = GetSquares(location.X, location.Y, pid);
+            if (CanMove(dest))
+            {
+                patternId = pid;
+                squares = dest;
+            }
+            Show();
+        }
+
+         /**
+         * This is used to rotate the block right
+         */
+        public void RotateRight()
         {
             if (patterns.Count == 0)
                 return;

@@ -141,12 +141,20 @@ namespace BigBadBolts_Assign5
         }
 
         /**
-         * This function is used to rotate the block
+         * This function is used to rotate the block Left
          */
-        public void RotateBlock()
+        public void RotateBlockLeft()
         {
             if (CurrentBlock != null)
-                CurrentBlock.Rotate();
+                CurrentBlock.RotateLeft();
+        }
+        /**
+         * This function is used to rotate the block Right
+         */
+        public void RotateBlockRight()
+        {
+            if (CurrentBlock != null)
+                CurrentBlock.RotateRight();
         }
 
       
