@@ -61,33 +61,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ref\Block.cs" />
-    <Compile Include="ref\BlockArea.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ref\FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ref\FormMain.Designer.cs" />
-    <Compile Include="ref\GameArea.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ref\Program.cs" />
-    <Compile Include="ref\Square.cs" />
     <Compile Include="Square.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="ref\FormMain.resx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -103,8 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Original Tetris theme %28Tetris Soundtrack%29.mp3" />
-    <Content Include="ref\peatetris.csproj" />
-    <Content Include="ref\peatetris.sln" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
