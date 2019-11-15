@@ -5,6 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
+///*******************************************************************
+//*                                                                  *
+//*  CSCI 473-1/504-1       Assignment 5                Fall   2019  *
+//*                                                                  *
+//*                                                                  *
+//*  Program Name:  Tetris                                           *
+//*                                                                  *
+//*  Programmer:    Byron Hogan,  z1825194                           *
+//*                 Margaret Higginbotham, z1793581                  *
+//*                                                                  *
+//*******************************************************************/
 
 namespace BigBadBolts_Assign5
 {
@@ -21,7 +32,6 @@ namespace BigBadBolts_Assign5
         private Square[] squares = null;
         private Point location;
         private List<Point[]> patterns;
-
 
         /**
          * This the constructor for a new block. It must be passed in the coordinates of the blcok
@@ -153,6 +163,7 @@ namespace BigBadBolts_Assign5
         {
             Square[] dest = GetSquares(location.X, location.Y + 1, patternId);
             Hide();
+
             if (CanMove(dest))
             {
                 location.Y += 1;
@@ -174,7 +185,6 @@ namespace BigBadBolts_Assign5
             return down;
         }
 
-     
 
         /**
          * This is usd to rotate the block Left

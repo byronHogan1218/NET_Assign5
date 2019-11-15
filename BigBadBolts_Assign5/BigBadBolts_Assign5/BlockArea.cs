@@ -7,6 +7,18 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Drawing;
 
+///*******************************************************************
+//*                                                                  *
+//*  CSCI 473-1/504-1       Assignment 5                Fall   2019  *
+//*                                                                  *
+//*                                                                  *
+//*  Program Name:  Tetris                                           *
+//*                                                                  *
+//*  Programmer:    Byron Hogan,  z1825194                           *
+//*                 Margaret Higginbotham, z1793581                  *
+//*                                                                  *
+//*******************************************************************/
+
 namespace BigBadBolts_Assign5
 {
     public class BlockArea : Panel

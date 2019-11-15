@@ -5,6 +5,18 @@ using System.Timers;
 using System.Diagnostics;
 using System.IO;
 
+///*******************************************************************
+//*                                                                  *
+//*  CSCI 473-1/504-1       Assignment 5                Fall   2019  *
+//*                                                                  *
+//*                                                                  *
+//*  Program Name:  Tetris                                           *
+//*                                                                  *
+//*  Programmer:    Byron Hogan,  z1825194                           *
+//*                 Margaret Higginbotham, z1793581                  *
+//*                                                                  *
+//*******************************************************************/
+
 namespace BigBadBolts_Assign5
 {
 
@@ -23,7 +35,7 @@ namespace BigBadBolts_Assign5
 
         const int WM_KEYDOWN = 0x100;
 
-        private int score = 0;
+        public static int score = 0;
         private int elimRows = 0;
         private Block nextBlock = null;
         private BlockArea pnlNext;
@@ -33,9 +45,8 @@ namespace BigBadBolts_Assign5
             InitializeComponent();
             Label.CheckForIllegalCrossThreadCalls = false;
 
-            //It wont work!!!
             System.Media.SoundPlayer sp = new System.Media.SoundPlayer("..\\..\\Tetris.wav");
-            sp.Play();
+            sp.PlayLooping();
 
             gameTimer = new Stopwatch();
             everySecond = new System.Timers.Timer(1000);
@@ -49,7 +60,11 @@ namespace BigBadBolts_Assign5
             pnlNext.Size = new System.Drawing.Size(80, 80);
         }
 
- 
+        public int getScore()
+        {
+            return score;
+        }
+
         /**
          * This handles the function to start the game or pause it.
          */
@@ -139,6 +154,8 @@ namespace BigBadBolts_Assign5
         {
             lbTime.Text = String.Format("{0:#0}:{1:00}", gameTimer.Elapsed.Minutes, gameTimer.Elapsed.Seconds);
         }
+
+
         /**
          * This advances the game by one frame aka one tick
          */
@@ -165,6 +182,20 @@ namespace BigBadBolts_Assign5
             lbGameOver.Visible = true;
             label1.Visible = false;
             btnStart.Text = "Start";
+
+            if (MessageBox.Show("Game Over" + "\n\nTime Played: " + lbTime.Text + "\nScore: " + score + "\nRows Eliminated: " + elimRows +
+                                "\n\nWould you like to play again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                // user clicked yes
+                btnStart_Click(sender, e);
+            }
+
+            else
+            {
+                // user clicked no
+                this.Close();
+
+            }
         }
 
         /// 
@@ -190,7 +221,6 @@ namespace BigBadBolts_Assign5
             nextBlock.Show();
             timer.Start();
         }
-
 
         /**
          * This funciton handles when a row is eleiminated
